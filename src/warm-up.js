@@ -37,13 +37,7 @@ var isFavorite = false;
 // variable should be true, otherwise it should be false. You MUST use a
 // comparison operator.
 
-var shouldOrderMore;
-
-if (inStock < 20) {
-  shouldOrderMore = true;
-} else {
-  shouldOrderMore = false;
-}
+var shouldOrderMore = inStock < 20;
 
 
 //------------------------- Conditionals -------------------------//
