@@ -13,6 +13,7 @@ function createRestaurant(name) {
 
 function addMenuItem(restaurant, item) {
   //this block will see if our item already exists and break out before adding a duplicate
+  //use a for..in loop to iterate through out objects
   for (var menu in restaurant.menus) { //iterate through each menu
     for (var dish in restaurant.menus[menu]) {//iterate through each food item in that menu
       if (restaurant.menus[menu][dish] === item) { //if any dish is deep equal to the item we're passing in
@@ -35,39 +36,18 @@ function removeMenuItem(restaurant, name, menu) {
   //store our returns to clean up the code
   var itemDeletedString = `No one is eating our ${name} - it has been removed from the ${menu} menu!`
   var notOnMenuString = `Sorry, we don't sell ${name}, try adding a new recipe!`
-  //first we want to locate the correct menu to operate on using an if/else statement
-  if (menu === "breakfast") {
-    //use a for/in loop to iterate through our menu object
-    for (var i in restaurant.menus.breakfast) {
-      //if the name of any of our current options is deep equal to the name of the item up for deletion
-      if (restaurant.menus.breakfast[i].name === name) {
-        //we remove that item from the menu array with the Array.splice() fuction at and index of
-        //the i in our loop, remove only 1 item after that index, and return our found statement
-        restaurant.menus.breakfast.splice(i, 1);
-        return itemDeletedString;
-      }
-      //after searching the entire menu if we have not returned our found string it must not exist, so return
-      //the not found string
-      return notOnMenuString
-    }
-    //repeat the above for each menu so that it works for any item and any menu
-  } else if (menu === "lunch") {
-    for (var i in restaurant.menus.lunch) {
-      if (restaurant.menus.lunch[i].name == name) {
-        restaurant.menus.lunch.splice(i, 1);
-        return itemDeletedString;
+  //iterate through each menu with a for..in statement
+  for (var menu in restaurant.menus) { //each menu
+    for (var dish in restaurant.menus[menu]) { //each dish on that menu
+      if (restaurant.menus[menu][dish].name === name) { //if the names are the same:
+        //remove the item from the array with .splice() indexed at the dish that matches, removing 1 element
+        restaurant.menus[menu].splice(dish, 1);
+        return itemDeletedString; //return our string letting the user know it was deleted.
       }
     }
-    return notOnMenuString
-  } else if (menu === "dinner") {
-    for (var i in restaurant.menus.dinner) {
-      if (restaurant.menus.dinner[i].name === name) {
-        restaurant.menus.dinner.splice(i, 1);
-        return itemDeletedString;
-      }
-    }
-    return notOnMenuString
   }
+  //if we make it here we didn't find and item with the given name on any of our menus
+  return notOnMenuString
 }
 
 module.exports = {
