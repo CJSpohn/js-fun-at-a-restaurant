@@ -23,8 +23,8 @@ function addMenuItem(restaurant, item) {
   }
   //If the menu item doesn't already exist, add it to the correct menu based on
   //the type property of the item being passed in
-  if (item.type === "breakfast") {
-    return restaurant.menus.breakfast.push(item);
+  if (item.type === "breakfast") { //a simlpe if/else statement can tackle this
+    return restaurant.menus.breakfast.push(item); //return the item being pushed to correct menu
   } else if (item.type === "lunch") {
     return restaurant.menus.lunch.push(item);
   } else if (item.type === "dinner") {
