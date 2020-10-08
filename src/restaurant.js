@@ -12,24 +12,14 @@ function createRestaurant(name) {
 }
 
 function addMenuItem(restaurant, item) {
-  //I'm creating an artificial menu length because I don't yet
-  //have a good solution for how to access the length of the menu,
-  //aka the number of items in the menu. Mostly because first I
-  //would have to find out which menu, breakfast lunch dinner, was the longest,
-  //and then set that to be the length. This makes it more simple.
-  var maxMenuLength = 3;
-  for (var i = 0; i < maxMenuLength; i++) {
-    //If our additional item already exists in any of our menus we break out of the function
-    //before adding that item to it's menu space
-    if (restaurant.menus.breakfast[i] === item) {
-      return;
-    } else if (restaurant.menus.lunch[i] === item) {
-      return;
-    } else if (restaurant.menus.dinner[i] === item) {
-      return;
+  //this block will see if our item already exists and break out before adding a duplicate
+  for (var menu in restaurant.menus) { //iterate through each menu
+    for (var dish in restaurant.menus[menu]) {//iterate through each food item in that menu
+      if (restaurant.menus[menu][dish] === item) { //if any dish is deep equal to the item we're passing in
+        return; //this is a dupilcate, so breakout before adding
+      }
     }
   }
-
   //If the menu item doesn't already exist, add it to the correct menu based on
   //the type property of the item being passed in
   if (item.type === "breakfast") {
