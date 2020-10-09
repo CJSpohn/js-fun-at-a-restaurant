@@ -22,7 +22,7 @@ function removeMenuItem(restaurant, name, menu) {
   //store our return strings to clean up the code
   var itemDeletedString = `No one is eating our ${name} - it has been removed from the ${menu} menu!`
   var notOnMenuString = `Sorry, we don't sell ${name}, try adding a new recipe!`
-  //iterate through each menu/item with a nested for..in statement
+  //iterate through each item with a nested for..in statement
   for (var dish in restaurant.menus[menu]) { //for each dish on each menu
     if (restaurant.menus[menu][dish].name === name) { //if the names are the same (meaning duplicate):
       //remove the item from the array with .splice(), the index of that item is equal to
