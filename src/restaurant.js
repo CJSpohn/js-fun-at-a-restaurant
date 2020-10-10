@@ -12,19 +12,19 @@ function createRestaurant(name) {
 }
 
 function addMenuItem(restaurant, item) {
+  var itemMenu = item.type;
   //if the item is NOT included then we push it to the correct array
-  if (!restaurant.menus[item.type].includes(item)) {
-    return restaurant.menus[item.type].push(item);
-  }
+  if (!restaurant.menus[itemMenu].includes(item)) {
+    return restaurant.menus[itemMenu].push(item);
+  } //it it is included nothing happens because it's already there
 }
 
 function removeMenuItem(restaurant, name, menu) {
   //iterate through each item with a nested for..in statement
-  for (var dish in restaurant.menus[menu]) { //for each dish on each menu
-    if (restaurant.menus[menu][dish].name === name) { //if the names are the same (meaning duplicate):
-      //remove the item from the array with .splice(), the index of that item is equal to
-      //our dish variable (the nth item iterated through in the second for/in loop). We remove one element.
-      restaurant.menus[menu].splice(dish, 1);
+  for (var i in restaurant.menus[menu]) { //for each dish on each menu
+    if (restaurant.menus[menu][i].name === name) { //if the names are the same (meaning duplicate):
+      //remove the item from the array with .splice(), at the index it was found, removing only that one element
+      restaurant.menus[menu].splice(i, 1);
       //return our string letting the user know it was deleted.
       return `No one is eating our ${name} - it has been removed from the ${menu} menu!`;
     }
