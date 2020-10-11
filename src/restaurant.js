@@ -20,7 +20,7 @@ function addMenuItem(restaurant, item) {
 }
 
 function removeMenuItem(restaurant, name, menu) {
-  //iterate through each item with a nested for..in statement
+  //iterate through each item with a for..in statement
   for (var i in restaurant.menus[menu]) { //for each dish on each menu
     if (restaurant.menus[menu][i].name === name) { //if the names are the same (meaning duplicate):
       //remove the item from the array with .splice(), at the index it was found, removing only that one element
